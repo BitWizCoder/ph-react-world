@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import Countries from "./components/Countries/Countries";
 
 const countriesPromise = fetch(
-  "https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,independent,cca3"
+  "https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,independent"
 ).then((res) => res.json());
 
 function App() {
