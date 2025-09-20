@@ -1,12 +1,19 @@
-import type { CountryType } from "../../types/Country";
+import { useState } from "react";
 
-export default function Country({ country }: { country: CountryType }) {
+export default function Country({ country, handleVisitedCountries }) {
+  const [visited, setVisited] = useState(false);
+
   const handleVisited = () => {
-    console.log("Visited Clicked");
+    setVisited(!visited);
+    handleVisitedCountries(country);
   };
 
   return (
-    <div className="border border-amber-500 p-4 rounded-sm">
+    <div
+      className={`border border-amber-500 p-4 rounded-sm ${
+        visited && "bg-amber-50"
+      }`}
+    >
       <h3 className="mb-4">
         <span className="font-semibold">Name:</span> {country.name.common}
       </h3>
@@ -16,7 +23,7 @@ export default function Country({ country }: { country: CountryType }) {
         className="px-4 py-3 rounded-sm mt-4 hover:bg-gray-600 cursor-pointer bg-gray-500 text-white"
         onClick={handleVisited}
       >
-        Visited
+        {visited ? "Visited" : "Not Visited"}
       </button>
     </div>
   );
