@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function Country({ country, handleVisitedCountries }) {
+export default function Country({
+  country,
+  handleVisitedCountries,
+  handleVisitedFlags,
+}) {
   const [visited, setVisited] = useState(false);
 
   const handleVisited = () => {
@@ -20,10 +24,18 @@ export default function Country({ country, handleVisitedCountries }) {
       <img src={country.flags.png} alt={country.name.common} />
       <p>Independent: {country.independent ? "Free" : "Not Free"}</p>
       <button
-        className="px-4 py-3 rounded-sm mt-4 hover:bg-gray-600 cursor-pointer bg-gray-500 text-white"
+        className="px-4 py-3 rounded-sm mt-4 hover:bg-gray-600 cursor-pointer bg-gray-500 text-white mr-4"
         onClick={handleVisited}
       >
         {visited ? "Visited" : "Not Visited"}
+      </button>
+      <button
+        className="px-4 py-3 rounded-sm mt-4 hover:bg-gray-600 cursor-pointer bg-gray-500 text-white"
+        onClick={() => {
+          handleVisitedFlags(country.flags.png);
+        }}
+      >
+        Add Visited Flag
       </button>
     </div>
   );
